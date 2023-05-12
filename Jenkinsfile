@@ -1,18 +1,18 @@
 pipeline {
-  agent { 
-    docker {
-      image 'openjdk:11' 
-      }
-    }
+  agent { label "linux" }
   stages {
     stage("build") {
       steps {
-        sh 'docker build -t ola-unicamp .'
+        sh """
+          docker build -t ola_mundo .
+        """
       }
     }
     stage("run") {
       steps {
-        sh 'docker run --rm ola-unicamp'
+        sh """
+          docker run --rm ola_mundo
+        """
       }
     }
   }
